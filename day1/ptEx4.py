@@ -1,0 +1,48 @@
+import torch
+
+t1 = torch.tensor([1,2,3,4,5,6])
+print(t1)
+print()
+
+t2 = t1.view(2,3)
+print(t2)
+print()
+print(t1.reshape(2,3))
+
+t3 = torch.tensor([[1,2],[3,4],[5,6]])
+print(t3)
+print(t3.size())
+print()
+print(t3.view(-1)) # 아무것도 없이 직렬화 tensor([1, 2, 3, 4, 5, 6])
+print()
+print(t3.view(1,-1)) # 하나짜리로 직렬화(괄호의 차이가 있음) tensor([[1, 2, 3, 4, 5, 6]])
+print()
+print(t3.view(2,-1))
+print()
+print(t3.view(3,-1))
+print()
+
+t4 = torch.tensor([[[1,2],[4,5]],[[5,6],[7,8]]])
+print(t4)
+print(t4.size()) # torch.Size([2, 2, 2])
+print()
+print(t4.view(-1))
+print()
+print(t4.view(1,-1))
+print()
+print(t4.view(2,-1))
+print()
+print(t4.view(4,-1))
+print()
+print(t4.view(2,2,-1)) # 앞의 거(2,2)의 크기에 따라 직렬화
+
+t5 = torch.tensor([[1,2,3],[4,5,6]])
+t6 = torch.tensor(([[10,20,30],[40,50,60]]))
+print(t5)
+print()
+print(t6)
+print()
+
+print(torch.cat([t5,t6], dim=0))
+print()
+print(torch.cat([t5,t6], dim=1))

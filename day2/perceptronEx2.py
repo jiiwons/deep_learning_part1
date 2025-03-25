@@ -7,8 +7,12 @@ torch.manual_seed(777)
 
 x_data = torch.FloatTensor([[0,0],[0,1],[1,0],[1,1]])
 # y_data = torch.FloatTensor([[0],  [1],  [1],  [1]]) # or
-y_data = torch.FloatTensor([[0],  [0],  [0],  [1]]) # and
+# y_data = torch.FloatTensor([[0],  [0],  [0],  [1]]) # and
+y_data = torch.FloatTensor([[0],  [1],  [1],  [0]]) #xor - accuracy:0.5 =>학습안됨. 아래 sequential에서 linear, sigmoid부분을 추가했음 - accuracy:1.0
+
 model = nn.Sequential(
+    nn.Linear(2,2),
+    nn.Sigmoid(),
     nn.Linear(2,1),
     nn.Sigmoid()
 )

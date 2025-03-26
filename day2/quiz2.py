@@ -1,7 +1,6 @@
 import pandas as pd
 from sklearn.datasets import load_breast_cancer
 
-from day2.logisticEx2 import optimizer, hypothesis
 
 cancer = load_breast_cancer()
 print(cancer.keys())

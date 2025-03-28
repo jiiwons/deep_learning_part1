@@ -5,6 +5,7 @@ plt.rcParams['axes.unicode_minus'] = False
 
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
 l1 = nn.Linear(784,128)
 l2 = nn.Linear(128,10)
@@ -36,10 +37,11 @@ np.random.seed(126)
 x = np.random.randn(100,1)
 y = x**2 + np.random.randn(100,1) + 0.1
 
-x_train = x[:50, :]
+x_train = x[:50, :] # (50,1)
 x_test = x[50:, :]
 y_train = y[:50, :]
 y_test = y[50:, :]
+
 
 # plt.scatter(x_train, y_train, c='b', label='훈련 데이터')
 # plt.scatter(x_test, y_test, c='k', marker='x', label='검증 데이터')
@@ -55,10 +57,15 @@ y_test = torch.tensor(y_test).float()
 class Net(nn.Module):
     def __init__(self):
         super().__init__()
-        self.fc1 = nn.Linear(1,1)
+        self.fc1 = nn.Linear(1,10)
+        self.fc2 = nn.Linear(10,10)
+        self.fc3 = nn.Linear(10,1)
+        self.relu = nn.ReLU()
         
     def forward(self, x):
-        y = self.fc1(x)
+        out = F.relu(self.fc1(x))
+        out = F.relu(self.fc2(out))
+        y = self.fc3(out)
         return y
     
 model = Net()

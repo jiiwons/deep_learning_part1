@@ -8,8 +8,10 @@ import torch.optim as optim
 
 
 train_epochs = 20
-batch_size = 64
-learning_rate = 0.005
+# batch_size = 64
+# learning_rate = 0.005
+batch_size = 100
+learning_rate = 0.0002
 
 mnist_train = dset.MNIST(root='MNIST_data/',
                          train=True,
